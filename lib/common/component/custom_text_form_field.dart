@@ -4,11 +4,17 @@ import 'package:flutter_actual/common/const/colors.dart';
 class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final String? errorText;
+  final bool obscureText;
+  final bool autofocus;
+  final ValueChanged<String> onChanged;
 
   const CustomTextFormField({
     super.key,
     this.hintText,
     this.errorText,
+    this.obscureText = false,
+    this.autofocus = false,
+    required this.onChanged,
   });
 
   @override
@@ -22,6 +28,9 @@ class CustomTextFormField extends StatelessWidget {
 
     return TextFormField(
       cursorColor: PRIMARY_COLOR,
+      obscureText: obscureText,
+      autofocus: autofocus,
+      onChanged: onChanged,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(20),
         hintText: hintText,
@@ -33,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: INPUT_BG_COLOR,
         filled: true,
         border: baseBorder,
+        enabledBorder: baseBorder,
         focusedBorder: baseBorder.copyWith(
           borderSide: baseBorder.borderSide.copyWith(
             color: PRIMARY_COLOR,
